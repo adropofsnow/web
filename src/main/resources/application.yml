@@ -1,0 +1,36 @@
+
+server:
+  port: 8081
+
+info:
+  app:
+    name:@project.artifactId@
+
+
+user:
+  userServiceUrl : www.baidu.com
+
+spring:
+  datasource:
+    url: jdbc:mysql://116.62.149.132:3306/happygrowing?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 12ASas!@
+    driver-class-name: com.mysql.jdbc.Driver
+
+  freemarker:
+    allow-request-override: false
+    cache: false
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .html
+
+
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.happygrowing.web.entity

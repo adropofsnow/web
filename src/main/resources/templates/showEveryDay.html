@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html style="height:100%;width:100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/icon.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.net/Public/js/easyui/jquery.easyui.min.js"></script>
+	<script>
+		
+		var spanIndex = 0;
+		$(function(){
+			//$('#w').window();
+			
+			
+			setInterval("showNextSpan()",30000);
+			
+						
+			$("#testBut").click(function(){
+					$("#content2").prev().trigger("click");
+				});
+				
+				
+				$("#myButton").click(function(){
+						getContentPicture();
+					});
+			
+		});
+		
+		
+		function getContentPicture(){
+				
+				$.ajax({url:"http://localhost:8081/hello/zzq",
+					//data:{},
+					type:'GET',
+					dataType:'JSONP', 
+					//contentType:"application/json; charset=utf-8",
+					success:function(result){
+
+				    alert(result);
+        		 $("#content3").html(result);
+   		 }, error:function(result){
+   		 	alert(result);
+   		 	}
+   		 });
+   		 
+			}
+    
+		function showNextSpan(){
+				
+				if(spanIndex == 1){
+					  $("#content3").prev().trigger("click");
+				}else if(spanIndex == 2){
+						$("#content1").prev().trigger("click");
+		  	}else{
+						$("#content2").prev().trigger("click");
+				}
+				
+				spanIndex += 1;
+				spanIndex = spanIndex % 3;
+				
+				//alert(spanIndex + "");
+		}
+	</script>
+</head>
+<body style="height:100%;width:100%;overflow:hidden;border:none;" >
+	
+	<button type="button" id = "myButton">Click Me!</button>
+	<div class="easyui-accordion" style="width:95%;height:95%;">
+		
+		<div  id = "content1" title="About" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:1px;">
+			<iframe src="http://localhost:8081/reviewChinese" style="width:100%;height:100%;">
+			</iframe>
+		</div>
+		<div title="Help" id = "content2" data-options="iconCls:'icon-help'" style="padding:5px;">
+			<p>The  allows you to provide multiple panels and display one or more at a time. Each panel has built-in support for expanding and collapsing. Clicking on a panel header to expand or collapse that panel body. The panel content can be loaded via ajax by specifying a 'href' property. Users can define a panel to be selected. If it is not specified, then the first panel is taken by default.</p> 		
+		</div>accordion
+		<div id = "content3" title="TreeMenu" data-options="iconCls:'icon-search'" style="padding:5px;">
+			<ul class="easyui-tree">
+				<li>
+					<span>Foods</span>
+					<ul>
+						<li>
+							<span>Fruits</span>
+							<ul>
+								<li>apple</li>
+								<li>orange</li>
+							</ul>
+						</li>
+						<li>
+							<span>Vegetables</span>
+							<ul>
+								<li>tomato</li>
+								<li>carrot</li>
+								<li>cabbage</li>
+								<li>potato</li>
+								<li>lettuce</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.happygrowing.web.mapper.ChinessWordMapper" >
+    <!-- <resultMap id="BaseResultMap" type="com.happygrowing.MyWeb.entity.HistoryToday" >
+        <id column="ID" property="ID" jdbcType="BIGINT" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+    </resultMap>
+     -->
+
+	<!--  resultmap 指定映射关系
+	resultType 指名具体的类 -->
+	
+    <select id="getChinessWord" resultType="com.happygrowing.web.entity.ChineseWord"  >
+       SELECT id, word, createTime,rightNum, wrongNum from historyToday
+    </select>
+
+    
+    <insert id="insertWord" parameterType="com.happygrowing.web.entity.ChineseWord">
+      insert into chinessWord(word) VALUES ( #{word} )
+    </insert>
+</mapper>
